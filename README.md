@@ -62,7 +62,7 @@ TrafficTelligence/
 ## 🧠 Technologies Used
 
 - **Language:** Python
-- **Libraries:** `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `joblib`, `flask`
+- **Libraries:** `pandas`, `numpy`, `matplotlib`, `scikit-learn`, `flask`
 - **ML Model:** Random Forest Regressor (trained & saved as `model.pkl`)
 - **Deployment:** Flask Web Framework, IBM Cloud (Jupyter)
 - **IDE:** Jupyter Notebook, VS Code
