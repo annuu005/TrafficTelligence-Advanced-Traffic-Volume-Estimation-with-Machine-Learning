@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://www.hdcarwallpapers.com/download/bugatti_chiron_pur_sport_2020_4k_8k-3840x2160.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .result-box {
+      background: rgba(0, 0, 0, 0.35); /* Very transparent black */
+      color: #fff;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 15px;
+      padding: 20px 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      animation: slideUp 1s ease-out;
+    }
+
+    .result-box h1 {
+      margin: 0 0 15px;
+      font-size: 26px;
+      font-weight: 500;
+    }
+
+    .result-box a {
+      display: inline-block;
+      padding: 10px 24px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    .result-box a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: black;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .result-box {
+        margin-bottom: 20px;
+        padding: 15px 20px;
+      }
+
+      .result-box h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="result-box">
+    <h1>{{ prediction_text }}</h1>
+    <a href="/">← Back to Form</a>
+  </div>
+</body>
+</html>

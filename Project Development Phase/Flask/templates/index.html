@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Volume Estimation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/premium-photo/traffic-highway-night_825385-1354.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.75);
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1e7e34;
+        }
+
+        .output {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+            color: lime;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traffic Volume Estimation</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <h2>Enter Details</h2>
+
+            <label for="temp">Temp:</label>
+            <input type="number" name="temp" id="temp" placeholder="Temperature" required>
+
+            <label for="rain">Rain:</label>
+            <input type="number" min="0" max="1" name="rain" id="rain" placeholder="Rain (0 or 1)" required>
+
+            <label for="snow">Snow:</label>
+            <input type="number" min="0" max="1" name="snow" id="snow" placeholder="Snow (0 or 1)" required>
+
+            <label for="day">Day:</label>
+            <input type="number" min="1" max="31" name="day" id="day" placeholder="Day" required>
+
+            <label for="month">Month:</label>
+            <input type="number" min="1" max="12" name="month" id="month" placeholder="Month" required>
+
+            <label for="year">Year:</label>
+            <input type="number" min="2000" max="2099" name="year" id="year" placeholder="Year" required>
+
+            <label for="hours">Hours:</label>
+            <input type="number" min="0" max="23" name="hours" id="hours" placeholder="Hours (0–23)" required>
+
+            <label for="minutes">Minutes:</label>
+            <input type="number" min="0" max="59" name="minutes" id="minutes" placeholder="Minutes" required>
+
+            <label for="seconds">Seconds:</label>
+            <input type="number" min="0" max="59" name="seconds" id="seconds" placeholder="Seconds" required>
+
+            <label for="weather_v2">Weather:</label>
+            <select id="weather_v2" name="weather_v2" required>
+                <option value="0">Clouds</option>
+                <option value="1">Clear</option>
+                <option value="3">Rain</option>
+                <option value="6">Drizzle</option>
+                <option value="4">Mist</option>
+                <option value="5">Haze</option>
+                <option value="2">Fog</option>
+                <option value="7">Thunderstorm</option>
+                <option value="8">Snow</option>
+                <option value="9">Squall</option>
+                <option value="10">Smoke</option>
+            </select>
+
+            <label for="holiday_v2">Holiday:</label>
+            <select id="holiday_v2" name="holiday_v2" required>
+                <option value="5">None</option>
+                <option value="1">Columbus Day</option>
+                <option value="3">Veterans Day</option>
+                <option value="8">Thanksgiving Day</option>
+                <option value="7">Christmas Day</option>
+                <option value="11">New Year's Day</option>
+                <option value="4">Washington's Birthday</option>
+                <option value="6">Memorial Day</option>
+                <option value="10">Independence Day</option>
+                <option value="2">State Fair</option>
+                <option value="9">Labour Day</option>
+                <option value="0">Martin Luther King Jr Day</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="output">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>
