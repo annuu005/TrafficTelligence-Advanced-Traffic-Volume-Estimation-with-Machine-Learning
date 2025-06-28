@@ -1,99 +1,183 @@
-# 🚦 TrafficTelligence: Advanced Traffic Volume Estimation Using Machine Learning
+🚦 TrafficTelligence - Advanced Traffic Volume Estimation with Machine Learning
 
-## 📌 Project Overview
+The **TrafficTelligence** project aims to revolutionize traffic management through advanced machine learning techniques for **accurate and intelligent traffic volume estimation**.
 
-**TrafficTelligence** is an advanced traffic prediction system that utilizes structured data and machine learning algorithms to estimate traffic volume. Unlike traditional systems that rely on CCTV, YOLO, or video input, TrafficTelligence leverages a comprehensive dataset with features like climate, holiday, and rainy conditions to provide accurate, data-driven traffic forecasting.
+---
 
-## 🔍 Problem Statement
+📌 Project Overview
 
-Urban traffic congestion results in increased travel times, pollution, and stress. Traditional traffic estimation systems often rely on expensive infrastructure like cameras and sensors. Our goal is to create a cost-effective solution that uses environmental and temporal data to forecast traffic patterns.
+This system predicts traffic volume using historical, temporal, weather, and holiday data. It applies preprocessing, exploration, and machine learning models to determine the best predictor of traffic patterns.
 
-## 🎯 Objectives
+---
 
-- Predict traffic volume using structured datasets
-- Enable authorities to plan and manage traffic flow proactively
-- Lay the foundation for real-time system integration in the future
+📚 Table of Contents
 
-## 🧠 Technologies Used
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup](#setup)
+- [Steps in the Pipeline](#steps-in-the-pipeline)
+- [Model Evaluation](#model-evaluation)
+- [Deployment](#deployment)
+- [Visualizations](#visualizations)
+- [Future Enhancements](#future-enhancements)
+- [Authors](#authors)
 
-- **Language:** Python  
-- **Libraries:**  
-  - `pandas`, `numpy` – Data Processing  
-  - `matplotlib`, `seaborn` – Data Visualization  
-  - `scikit-learn` – Machine Learning Models  
-  - `joblib` – Model Saving  
-- **Tools:** Jupyter Notebook, VS Code  
-- **Version Control:** Git, GitHub
+---
 
-## 🗂️ Project Structure
+✨ Features
+
+The dataset includes the following features:
+
+- **Temporal Data**: Extracted from datetime – day, month, year, hour, minute, second.
+- **Weather Conditions**: Temperature, rainfall, snowfall, and weather categories.
+- **Traffic Volume**: Target variable indicating the number of vehicles.
+- **Holidays**: Whether the date is a public holiday.
+
+---
+
+🧰 Technologies Used
+
+**Programming Language**: Python
+
+**Libraries & Tools**:
+
+- `pandas`, `numpy` – Data manipulation
+- `seaborn`, `matplotlib` – Visualizations
+- `scikit-learn` – Machine learning algorithms and tools
+- `xgboost` – Gradient boosting model
+- `pickle` – Model serialization (used inside `model.zip`)
+
+
+---
+📂 Directory Structure
 TrafficTelligence/
-├── .ipynb_checkpoints/ # Jupyter notebook checkpoints
+├── .ipynb_checkpoints/
 ├── Flask/
-│ ├── templates/ # HTML templates (for Flask UI)
-│ ├── app.py # Flask application script
-│ ├── encoder.pkl # Encoded label classes
-│ └── model.pkl # Trained ML model
+│ ├── templates/
+│ ├── app.py
+│ ├── encoder.pkl
+│ └── model.pkl 👈 Extracted from model.zip
+│
 ├── IBM/
 │ └── Flask/
-│ └── traffic_volume_lbm_scoring end point.ipynb # IBM cloud model deployment/testing
-├── Requirements.txt # List of required Python packages
-├── Traffic volume estimation.docx # Project report/documentation
-├── traffic volume.csv # Dataset used for training/testing
-├── traffic volume.ipynb # Jupyter notebook for EDA and modeling
+│ └── traffic_volume_lbm_scoring_end_point.ipynb
+│
+├── Requirements.txt
+├── Traffic volume estimation.docx
+├── traffic volume.csv
+├── traffic volume.ipynb
+
+⚙️ Setup Instructions
+
+1. **Clone the repository**:
+
+git clone https://github.com/your-username/TrafficTelligence.git
+cd TrafficTelligence
+
+Install dependencies:
+pip install pandas numpy seaborn matplotlib scikit-learn xgboost
+
+Prepare the dataset:
+Place your dataset file (traffic volume.csv) inside the project  folder.
+dataset link: https://drive.google.com/file/d/1iV5PfYAmI6YP0_0S4KYy1ZahHOqMgDbM/view
+
+Extract the trained model:
+Place model.zip into the model/ folder.
+
+Extract model.zip so that it contains model.pkl files inside.
+
+Model.zip/
+├── model.pkl
+
+🧠 These files will be used for future predictions.
+
+Run the main script:
+cd “TrafficTelligence/Flask
+python app.py
 
 
-## 📊 Dataset Features
+🔄 Steps in the Pipeline
+1. 📊 Data Preprocessing
+Load dataset
 
-- `date_time`  
-- `holiday`  
-- `rain_1h`, `snow_1h`, `clouds_all`  
-- `weather_main`, `weather_description`  
-- `temp`, `humidity`, `wind_speed`  
-- `traffic_volume` (target)
+Handle missing values:
 
-## 🧪 Key Features
+Numeric → Replace with mean
 
-- Predicts hourly traffic volume
-- Flask-based web application for user interaction
-- Model deployment compatibility with IBM Cloud
-- Clean data preprocessing and model training pipeline
-- Exported model and encoder for real-time use
+Categorical → Replace with most frequent ('Clouds')
 
-## 🧠 Technologies Used
+Date-Time split into multiple columns
 
-- **Language:** Python
-- **Libraries:** `pandas`, `numpy`, `matplotlib`, `scikit-learn`, `flask`
-- **ML Model:** Random Forest Regressor (trained & saved as `model.pkl`)
-- **Deployment:** Flask Web Framework, IBM Cloud (Jupyter)
-- **IDE:** Jupyter Notebook, VS Code
+Label encode categorical values
 
+Standardize numerical values
 
+2. 🔍 Exploratory Data Analysis
+Correlation heatmap
 
-## 🚀 Model Summary
+Count plots
 
-- **Algorithm Used:** Random Forest Regressor  
-- **Performance Metrics:**  
-  - Training R² Score: **0.92**  
-  - Validation R² Score: **0.86**
+Pair plots
 
-## 🛠️ How to Run
+Box plots
 
-1. **Clone the repository:**
+3. 🧠 Model Training
+Trained models include:
 
-   git clone https://github.com/yourusername/TrafficTelligence.git
+Linear Regression
 
-    cd TrafficTelligence
+Decision Tree Regressor
 
-   Install dependencies:
-    pip install -r requirements.txt
+Random Forest Regressor ✅ (Best performer)
 
-    To run:
-    cd "TrafficTelligence:Advanced Traffic Volume Estimation using MachineLearning\Flask"
-    python app.py
+Support Vector Regressor
 
-📄 Requirements File
-pandas, numpy, matplotlib, scikit-learn, pickle, flask
+XGBoost Regressor
 
-📬 Contact
-For any queries, contact: anees.abdul420@gmail.com
+4. 📈 Model Evaluation
+Evaluated using:
 
+R-squared Score (R²): Measures prediction accuracy
+
+Root Mean Squared Error (RMSE): Average prediction error
+
+🏆 Model Evaluation
+Best Model: Random Forest Regressor
+
+R² Score:
+
+Training: 0.92
+
+Validation: 0.86
+
+Reason for selection: Lowest RMSE and highest accuracy
+
+🚀 Deployment
+Best model and encoder saved as:
+
+model/model.pkl
+
+model/encoder.pkl
+
+Use pickle to load these files in your app for prediction.
+
+Visualizations:
+📉 Correlation Heatmap
+
+🔁 Pair Plots
+
+📊 Count Plots
+
+📦 Box Plots
+
+🧪 Future Enhancements
+Add live traffic or road condition features.
+
+Apply hyperparameter tuning (e.g., GridSearchCV).
+
+Deploy as a web app or REST API for real-time predictions.
+
+👥 Authors:
+Abdul Anees
+contact anees.abdul420@gmail.com for queries
