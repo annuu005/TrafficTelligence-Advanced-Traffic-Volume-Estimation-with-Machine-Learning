@@ -76,7 +76,7 @@ git clone https://github.com/your-username/TrafficTelligence.git
 cd TrafficTelligence
 
 Install dependencies:
-pip install pandas numpy seaborn matplotlib scikit-learn xgboost
+   pip install pandas numpy seaborn matplotlib scikit-learn xgboost
 
 Prepare the dataset:
 Place your dataset file (traffic volume.csv) inside the project  folder.
@@ -93,7 +93,7 @@ Model.zip/
 🧠 These files will be used for future predictions.
 
 Run the main script:
-cd “TrafficTelligence/Flask
+cd “TrafficTelligence/Flask"
 python app.py
 
 
